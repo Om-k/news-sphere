@@ -1,13 +1,28 @@
 import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NewsFeed from "./containers/NewsFeed";
+import NewsFeedSearch from "./containers/NewsFeedSearch";
+import Navbar from "./containers/Navbar";
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <div className='bg-primary' >
-     <h1>Test applcation</h1>
-     <p className='mt-5' >Lermw dasoidoas ioasjd ioajs ij d i ai  aslnlksanflkn asl lknkflsan klasnkldnaslk n</p>
-    </div>
-  )
-}
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        {/*Top Content*/}
+        <Navbar />
 
-export default App
+        {/* Main content*/}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<NewsFeed />} />
+            <Route path="/search" element={<NewsFeedSearch />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
+
