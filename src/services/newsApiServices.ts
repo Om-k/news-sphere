@@ -1,4 +1,4 @@
-import { INewsItem, INewsItemNewsAPi } from "../types/News";
+import { INewsItem, INewsItemNewsAPi, INewsSourceNewsAPi } from "../types/News";
 import { newsAPI } from "./axiosInstances";
 import placeholder from "../assets/placeholder.webp";
 import { convertDate } from "../utils/dateConversion";
@@ -7,7 +7,7 @@ import { makeUniqueObjectsByKey } from "../utils/arrayUtils";
 const transFormData = (newsApiRes: INewsItemNewsAPi[]): INewsItem[] => {
   const transformedData: INewsItem[] = newsApiRes.map((item) => ({
     thumbnail: item.urlToImage || placeholder,
-    title: item.content,
+    title: item.title,
     source: item.source.name,
     date: convertDate(item.publishedAt), // Format to YYYY-MM-DD
     url: item.url,
@@ -91,6 +91,22 @@ export const getCominedNewApiData = async (
     [...newsApiSources, ...newsApiCategories, ...newsApiSourcesSearch],
     "title"
   );
+  
 
   return newsApiData;
+};
+
+export const getNewsApiSources = async (): Promise<string[]> => {
+  try {
+    const response = await newsAPI.get(`/sources`);
+    
+    const sourceNames: string[] = response.data.sources.map(
+      (source: INewsSourceNewsAPi) => source.name
+    );
+
+    return sourceNames;
+  } catch (error) {
+    console.error("Error fetching news sources:", error);
+    return [];
+  }
 };

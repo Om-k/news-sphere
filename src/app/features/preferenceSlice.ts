@@ -21,13 +21,14 @@ const initialState: IPreferenceState = {
 };
 
 export const preferenceSlice = createSlice({
-  name: "prefference",
+  name: "preference",
   initialState: initialState,
   reducers: {
     updateFeedPreference: (state, action) => {
       state.feedPreference = action.payload;
     },
-    resetFeedPreference: (state, _action) => {//_ to avoid warnings
+    resetFeedPreference: (state, _action) => {
+      //_ to avoid warnings
       state.feedPreference = initialState.feedPreference;
     },
     updateSearchPreference: (state, action) => {
@@ -38,12 +39,12 @@ export const preferenceSlice = createSlice({
     },
     mergeFeedPreferenceIntoSearch: (state, _action) => {
       state.searchPreference.category = mergeUnique(
-        state.searchPreference.category,
-        state.feedPreference.category
+        state.searchPreference.category ?? [],
+        state.feedPreference.category ?? []
       );
       state.searchPreference.source = mergeUnique(
-        state.searchPreference.source,
-        state.feedPreference.source
+        state.searchPreference.source ?? [],
+        state.feedPreference.source ?? []
       );
       state.searchPreference.isApplied =
         state.feedPreference.isApplied || state.searchPreference.isApplied;
@@ -59,4 +60,4 @@ export const {
   mergeFeedPreferenceIntoSearch,
 } = preferenceSlice.actions;
 
-export default preferenceSlice.actions;
+export default preferenceSlice.reducer;

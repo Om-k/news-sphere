@@ -21,7 +21,7 @@ export interface INewsItemNewYorkTimes {
 }
 
 export interface INewsItemNewsAPi {
-  content: string; //title
+  title: string; //title
   url: string; //url
   urlToImage: string //thumbnail
   source: {
@@ -32,4 +32,7 @@ export interface INewsItemNewsAPi {
  author:string //author
 }
 
+export interface INewsSourceNewsAPi {
+  name: string
+}
 

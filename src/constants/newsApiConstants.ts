@@ -9,6 +9,7 @@ export const newsApiCategories = [
 ];
 
 //authors cant be filtered for news api
+//Sorces will be gotten from end point
 
 
   

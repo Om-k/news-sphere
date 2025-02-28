@@ -20,7 +20,7 @@ export const getNewYorkTimesData = async (
 
     const transformedData: INewsItem[] = nytRes.map((item) => ({
       thumbnail: item.multimedia?.[0]?.url
-        ? `${newYorkTimesBaseUrl}/${item.multimedia[0].url}`
+        ? `${newYorkTimesBaseUrl}${item.multimedia[0].url}`
         : placeholder,
       title: item.headline.main,
       source: item.source,

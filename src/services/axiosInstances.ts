@@ -11,7 +11,7 @@ import axios from 'axios';
 export const newYorkTimesAPI = axios.create({
   baseURL: 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
   params: {
-    'api-key': 'Z6uSuFQvA4LHAB3xT940FpcLO2JnigLm',
+    'api-key': 'yLLbjfshrH5UGOsJQA8ZGxyLG6Rg5YC7',
   },
 });
 

@@ -1,20 +1,24 @@
-import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useGetNews from "../hooks/useGetNews";
+import { IPreferenceState } from "../types/States";
+import GridComponent from "../components/custom/GridComponent";
+import useQueryParam from "../hooks/useParamsSearch";
 
 const NewsFeedSearch = () => {
 
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
-    const query = searchParams.get("q"); 
-    console.log("Query",query);
+  const preferences = useSelector((state: IPreferenceState) => state.searchPreference);
 
-    useEffect(() => {
-        if (!query || query.trim() === "") {
-          navigate("/");
-        }
-      }, [query, navigate]);
+  const query = useQueryParam("q");
+  const { newsData, isLoading, error } = useGetNews(preferences, query ? query : "");
 
-    return <section>NewsFeedSearch</section>
+
+  return (
+    <section className="mx-14" >
+      {error && <p className="text-center text-red-500">{error}</p>}
+      <GridComponent newsData={newsData} />
+      {isLoading && <p className="text-center">Loading...</p>}
+    </section>
+  );
 }
 
 export default NewsFeedSearch

@@ -2,9 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+#root {
   --primary: #fff;
-  --secondary: #000;
+  --secondary: #C6C6C6;
+  --secondary-light: #F4F4F4;
+  --secondary-dark: #5F5E5E;
+  --secondary-darker: #000;
+  --acsent: #7EADC7;
+  --acsent-light: #E4EAEE;
+}
+
+.dark #root {
+  --primary: #000;
+  --secondary: #515151;
+  --secondary-light: rgb(30, 30, 30);
+  --secondary-dark: #898989;
+  --secondary-darker: #fff;
+  --acsent: #7EADC7;
+  --acsent-light: #E4EAEE;
 }
 
 h1 {
