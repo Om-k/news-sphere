@@ -18,3 +18,7 @@ export interface IPreferenceSearch extends IBasePreference {
   date: IDateRange;
 }
 
+export interface IPreferences extends IBasePreference {
+  authors: string[];
+  date: IDateRange;
+}
