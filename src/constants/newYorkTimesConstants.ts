@@ -126,4 +126,4 @@ export const newYorkTimesSources = [
   "HuffPost"
 ];
 
-  
+export const newYorkTimesBaseUrl = 'https://static01.nyt.com/'

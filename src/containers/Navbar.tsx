@@ -1,24 +1,51 @@
+import { getNewsData } from "../services/getDataServices";
+import { getNewsApiData } from "../services/newsApiServices";
+// import { getNewYorkTimesData } from "../services/newYorkTimesServices";
 import { objectToParameter } from "../utils/objectToPrameter"
 
 const Navbar = () => {
     return <section>
         <h1>NewsSphere</h1>
-        <button onClick={() => {
+        <button onClick={async () => {
             console.log(objectToParameter({
                 isApplied: true,
                 category: ['Technology', 'Science'],
                 source: ['bbc-news', 'the-verge'],
                 authors: ['John Doe', 'Jane Smith'],
                 date: {
-                  from: '2025-01-28',
-                  to: '2025-01-28',
+                  from: '2023-01-01',
+                  to: '2023-12-31',
                 },
-              }))
-        }} >click</button>
+              }));
+              const param = {
+                isApplied: true,
+                category: ['Arts', 'Science'],
+                source: ['bbc-news', 'the-verge'],
+                authors: ["Adam Rasgon", "Julia Jacobs"], 
+                date: {
+                  from: '2025-02-26',
+                  to: '2025-02-28',
+                },
+              }
+
+              const paramNA = {
+                isApplied: true,
+                category: ["technology"],
+                source: ['bbc-news', 'the-verge'],
+                authors: ["Adam Rasgon", "Julia Jacobs"], 
+                date: {
+                  from: '2025-02-26',
+                  to: '2025-02-28',
+                },
+              }
+
+              console.log("Curr params",param);
+              
+              const data = await getNewsData(param  ,"",1)
+              console.log("Curr data",data);
+              
+       }} >click</button>
         </section>
 }
 
 export default Navbar
-
-//"category=Technology,Science&sources=bbc-news,the-verge&authors=John%20Doe,Jane%20Smith&from=2025-01-28&to=2025-01-28"
-//"fq=section_name%3A(%22Technology%22%20%22Science%22)%20AND%20source%3A(%22bbc-news%22%20%22the-verge%22)%20AND%20byline%3A(%22John%20Doe%22%20%22Jane%20Smith%22)&begin_date=20250128&end_date=20250128

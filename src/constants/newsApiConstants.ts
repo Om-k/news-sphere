@@ -8,5 +8,7 @@ export const newsApiCategories = [
   "Technology"
 ];
 
+//authors cant be filtered for news api
+
 
   

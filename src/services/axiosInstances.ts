@@ -8,8 +8,8 @@ import axios from 'axios';
 //   },
 // });
 
-export const nytAPI = axios.create({
-  baseURL: 'baseURL: "/guardian-api"',
+export const newYorkTimesAPI = axios.create({
+  baseURL: 'https://api.nytimes.com/svc/search/v2/articlesearch.json',
   params: {
     'api-key': 'Z6uSuFQvA4LHAB3xT940FpcLO2JnigLm',
   },
@@ -18,6 +18,6 @@ export const nytAPI = axios.create({
 export const newsAPI = axios.create({
   baseURL: 'https://newsapi.org/v2',
   headers: {
-    'Authorization': 'Bearer df97de98cd6b41619e490ea161a18cbe',
+    'Authorization': 'Bearer 2b03684c86b942b3ba6dac1522989334',
   },
 });

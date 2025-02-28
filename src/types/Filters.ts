@@ -1,8 +1,8 @@
 // Base interface for preferences
 export interface IBasePreference {
   isApplied: boolean;
-  category: string[];
-  source: string[];
+  category?: string[];
+  source?: string[];
 }
 
 export interface IPreferenceFeed extends IBasePreference {
@@ -19,6 +19,6 @@ export interface IPreferenceSearch extends IBasePreference {
 }
 
 export interface IPreferences extends IBasePreference {
-  authors: string[];
-  date: IDateRange;
+  authors?: string[];
+  date?: IDateRange;
 }
