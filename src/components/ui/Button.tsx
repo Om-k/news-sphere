@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   const variantClasses = {
     filled: "px-4 py-2  bg-secondaryLight hover:bg-secondary focus:outline-none border border-secondary",
     iconed: "bg-secondaryLight p-3 hover:bg-secondary focus:outline-none border border-secondary",
-    text: "px-4 py-2  bg-transparent text-secondary hover:underline focus:outline-none",
+    text: "px-4 py-2 text-secondary hover:bg-secondary border border-secondary focus:outline-none",
   };
 
   return (

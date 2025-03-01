@@ -36,3 +36,15 @@ export interface INewsSourceNewsAPi {
   name: string
 }
 
+export interface INewsItemGuardian {
+  webTitle: string; // Title of the news article
+  webUrl: string; // URL of the article
+  fields?: {
+    thumbnail?: string; // Thumbnail image URL (if available)
+    byline?: string; // Author of the article (if available)
+  };
+  sectionName: string; // Section or category of the news
+  webPublicationDate: string; // Publication date in ISO format (e.g., 2025-01-14T16:45:13+0000)
+}
+
+

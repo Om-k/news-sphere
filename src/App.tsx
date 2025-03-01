@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NewsFeed from "./containers/NewsFeed";
 import NewsFeedSearch from "./containers/NewsFeedSearch";
 import Navbar from "./containers/Navbar";
+import Personalize from './containers/Personalize';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<NewsFeed/>} />
             <Route path="/search" element={<NewsFeedSearch />} />
+            <Route path="/personalize" element={<Personalize />} />
           </Routes>
         </main>
       </div>

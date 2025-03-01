@@ -10,6 +10,7 @@ export const getNewYorkTimesData = async (
   query?: string,
   otherParams?: string
 ): Promise<INewsItem[]> => {
+  
   try {
     const response = await newYorkTimesAPI.get(
       `?q=${query ? query : "news"}&page=${pageNo}&sort=newest&${params}${

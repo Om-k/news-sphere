@@ -63,19 +63,24 @@ export const getCominedNewApiData = async (
   let newsApiSourcesSearch: INewsItem[] = [];
 
   //Three different calls as NewsAPI doesn't allow to call with both the filters
-  newsApiSources = await getNewsApiData(
-    newsApiParamsSources,
-    pageNo,
-    query,
-    otherParams
-  );
+  if (
+    (newsApiParamsCategories == "" && newsApiParamsSources == "") ||
+    newsApiParamsSources.includes("sources")
+  )
+    newsApiSources = await getNewsApiData(
+      newsApiParamsSources,
+      pageNo,
+      query,
+      otherParams
+    );
 
-  newsApiCategories = await getNewsApiData(
-    newsApiParamsCategories,
-    pageNo,
-    query,
-    otherParams
-  );
+  if (newsApiParamsCategories.includes("category"))
+    newsApiCategories = await getNewsApiData(
+      newsApiParamsCategories,
+      pageNo,
+      query,
+      otherParams
+    );
 
   if (query !== "") {
     newsApiSourcesSearch = await getNewsApiData(
@@ -91,7 +96,6 @@ export const getCominedNewApiData = async (
     [...newsApiSources, ...newsApiCategories, ...newsApiSourcesSearch],
     "title"
   );
-  
 
   return newsApiData;
 };
@@ -99,7 +103,7 @@ export const getCominedNewApiData = async (
 export const getNewsApiSources = async (): Promise<string[]> => {
   try {
     const response = await newsAPI.get(`/sources`);
-    
+
     const sourceNames: string[] = response.data.sources.map(
       (source: INewsSourceNewsAPi) => source.name
     );
