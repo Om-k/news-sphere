@@ -48,7 +48,7 @@ const Personalize: React.FC = () => {
         <Button
           variant="iconed"
           icon={<BsArrowLeft />}
-          onClick={() => {navigator("/")}}
+          onClick={() => { navigator("/") }}
         ></Button>
         <h2>Personalize</h2>
         <div></div>
@@ -70,6 +70,7 @@ const Personalize: React.FC = () => {
             isFeed={true}
           />
           <SearchInput
+            isMainSearch={false}
             placeholder={`Search ${activeSection}`}
             onInputChange={handleSearchChange({
               searchQuery,
@@ -86,7 +87,7 @@ const Personalize: React.FC = () => {
               <Button
                 variant="text"
                 key={index}
-                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, feedPreference, dispatch,true)}
+                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, feedPreference, dispatch, true)}
               >
                 {item}
               </Button>

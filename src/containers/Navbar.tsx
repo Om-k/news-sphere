@@ -50,6 +50,7 @@ const Navbar = () => {
             placeholder="Search..."
             onInputChange={handleInputChange}
             onSubmit={handleSearchSubmit}
+            isMainSearch={true}
           />
         </div>
       </div>

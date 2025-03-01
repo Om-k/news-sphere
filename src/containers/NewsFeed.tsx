@@ -12,10 +12,15 @@ const NewsFeed = () => {
 
   return (
     <section className="md:mx-14 mx-6" >
-      <TopPanelMain/>
+      <TopPanelMain />
       {error && <p className="text-center text-red-500">{error}</p>}
-      <GridComponent newsData={newsData} />
-      {isLoading && <Loader/>}
+      {newsData.length > 0  ?
+        <GridComponent newsData={newsData} /> :
+        <div className="w-full mt-5 flex justify-center items-center" >
+          {!isLoading && !error && <h3>Please try adjsting the filters</h3>}
+        </div>
+      }
+      {isLoading && <Loader />}
     </section>
   );
 };

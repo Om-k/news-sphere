@@ -24,7 +24,7 @@ const SearchFilter: React.FC = () => {
   const { isLoading, isLoaded } = useGetFilters();
   const { filters } = useSelector((state: RootState) => state.filters);
   const { searchPreference } = useSelector((state: RootState) => state.preference);
-  
+
   const categories = ["category", "source"]
 
   const [searchParams] = useSearchParams();
@@ -49,9 +49,9 @@ const SearchFilter: React.FC = () => {
   }
 
   const handleDateApply = (dateRange: DateRange) => {
-    console.log("Date",dateRange);
-    dispatch(updateSearchPreference({...searchPreference,
-      date:{
+    dispatch(updateSearchPreference({
+      ...searchPreference,
+      date: {
         from: dateRange.from,
         to: dateRange.to
       }
@@ -64,7 +64,7 @@ const SearchFilter: React.FC = () => {
         <Button
           variant="iconed"
           icon={<BsArrowLeft />}
-          onClick={() => {navigator(`/search?q=${paramValue!=null ? paramValue : ""}`)}}
+          onClick={() => { navigator(`/search?q=${paramValue != null ? paramValue : ""}`) }}
         ></Button>
         <h2>Filter</h2>
         <div></div>
@@ -82,11 +82,12 @@ const SearchFilter: React.FC = () => {
         <div className="bg-secondaryLight p-4 rounded-md border border-secondary mb-4">
           <SelectedFilters
             activeSection={activeSection}
-            feedPreference={{...searchPreference,authors:[]}}
+            feedPreference={{ ...searchPreference, authors: [] }}
             dispatch={dispatch}
             isFeed={false}
           />
           <SearchInput
+            isMainSearch={false}
             placeholder={`Search ${activeSection}`}
             onInputChange={handleSearchChange({
               searchQuery,
@@ -103,7 +104,7 @@ const SearchFilter: React.FC = () => {
               <Button
                 variant="text"
                 key={index}
-                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, {...searchPreference,authors:[]}, dispatch,false)}
+                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, { ...searchPreference, authors: [] }, dispatch, false)}
               >
                 {item}
               </Button>

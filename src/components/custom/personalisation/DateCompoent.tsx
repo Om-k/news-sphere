@@ -1,6 +1,8 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import Button from "../../ui/Button"; 
 import { BiCalendar } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../app/store";
 
 export type DateRange = {
   from: string;
@@ -15,6 +17,8 @@ const DateCompoent: React.FC<DateCompoentProps> = ({ onApply }) => {
   const [dateRange, setDateRange] = useState<DateRange>({ from: "", to: "" });
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const { searchPreference } = useSelector((state: RootState) => state.preference);
+
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>, type: "from" | "to") => {
     setDateRange((prev) => ({
       ...prev,
@@ -26,6 +30,10 @@ const DateCompoent: React.FC<DateCompoentProps> = ({ onApply }) => {
     onApply(dateRange);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+      setDateRange(searchPreference.date)
+  },[])
 
   return (
     <div className="mb-5" >
@@ -39,7 +47,7 @@ const DateCompoent: React.FC<DateCompoentProps> = ({ onApply }) => {
       </Button>
 
       {isOpen && (
-        <div className="mt-4 bg-white p-4 rounded-md shadow-md border border-secondary">
+        <div className="mt-4 bg-primary p-4 rounded-md shadow-md border border-secondary">
           <div className="flex space-x-4">
             <div className="flex flex-col">
               <label className="mb-2">From</label>
@@ -47,7 +55,7 @@ const DateCompoent: React.FC<DateCompoentProps> = ({ onApply }) => {
                 type="date"
                 value={dateRange.from}
                 onChange={(e) => handleDateChange(e, "from")}
-                className="border border-secondary rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-primary"
               />
             </div>
             <div className="flex flex-col">
@@ -56,7 +64,7 @@ const DateCompoent: React.FC<DateCompoentProps> = ({ onApply }) => {
                 type="date"
                 value={dateRange.to}
                 onChange={(e) => handleDateChange(e, "to")}
-                className="border border-secondary rounded-md p-2"
+                className="border border-secondary rounded-md p-2 bg-primary" 
               />
             </div>
           </div>

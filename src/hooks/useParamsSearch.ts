@@ -8,7 +8,7 @@ const useQueryParam = (paramName: string): string | null => {
 
   useEffect(() => {
     if (!paramValue || paramValue.trim() === "") {
-      navigate("/"); // Redirect to home if the query param is invalid
+      navigate("/"); 
     }
   }, [paramValue, navigate]);
 
