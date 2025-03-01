@@ -27,8 +27,8 @@ export const preferenceSlice = createSlice({
     updateFeedPreference: (state, action) => {
       state.feedPreference = action.payload;
     },
-    resetFeedPreference: (state, _action) => {
-      //_ to avoid warnings
+    resetFeedPreference: (state, _action) => { //_ to avoid warnings
+      console.log("Reset 2");
       state.feedPreference = initialState.feedPreference;
     },
     updateSearchPreference: (state, action) => {

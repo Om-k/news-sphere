@@ -21,12 +21,12 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   children,
 }) => {
-  const baseClasses = "rounded-md flex items-center justify-center transition-all duration-300 focus:none outline-none";
+  const baseClasses = "rounded-md flex items-center justify-center transition-all duration-300 focus:none outline-none h-11";
 
   const variantClasses = {
     filled: "px-4 py-2  bg-secondaryLight hover:bg-secondary focus:outline-none border border-secondary",
-    iconed: "bg-secondaryLight p-3 hover:bg-secondary focus:outline-none border border-secondary",
-    text: "px-4 py-2 text-secondary hover:bg-secondary border border-secondary focus:outline-none",
+    iconed: "bg-secondaryLight p-3 hover:bg-secondary focus:outline-none border border-secondary h-10",
+    text: "px-4 py-2 hover:bg-secondary border border-secondary focus:outline-none",
   };
 
   return (

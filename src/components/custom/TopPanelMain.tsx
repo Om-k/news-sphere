@@ -9,6 +9,7 @@ const TopPanelMain = () => {
   return (
     <div className="bg-primary border border-secondary p-2 flex justify-between items-center rounded-md mb-5">
       <h2
+        className="ml-3"
       >
         Hello There!
       </h2>
@@ -19,7 +20,7 @@ const TopPanelMain = () => {
           navigator("/personalize")
         }}
       >
-        Personalize
+        <p className="hidden md:flex" >Personalize</p>
       </Button>
     </div>
   );

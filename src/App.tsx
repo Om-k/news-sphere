@@ -5,6 +5,7 @@ import NewsFeed from "./containers/NewsFeed";
 import NewsFeedSearch from "./containers/NewsFeedSearch";
 import Navbar from "./containers/Navbar";
 import Personalize from './containers/Personalize';
+import SearchFilter from './containers/SearchFilter';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             <Route path="/" element={<NewsFeed/>} />
             <Route path="/search" element={<NewsFeedSearch />} />
             <Route path="/personalize" element={<Personalize />} />
+            <Route path="/filter" element={<SearchFilter />} />
           </Routes>
         </main>
       </div>
