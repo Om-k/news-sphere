@@ -24,7 +24,6 @@ const SearchFilter: React.FC = () => {
   const { isLoading, isLoaded } = useGetFilters();
   const { filters } = useSelector((state: RootState) => state.filters);
   const { searchPreference } = useSelector((state: RootState) => state.preference);
-  console.log("Search",searchPreference);
   
   const categories = ["category", "source"]
 

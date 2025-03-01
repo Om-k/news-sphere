@@ -10,7 +10,6 @@ const NewsFeedSearch = () => {
   const { searchPreference } = useSelector((state: RootState) => state.preference);
 
   const query = useQueryParam("q");
-  console.log("Feed pref serach",searchPreference);
 
   const { newsData, isLoading, error } = useGetNews(searchPreference, query ? query : "");
 

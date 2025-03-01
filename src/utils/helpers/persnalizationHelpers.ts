@@ -12,7 +12,6 @@ export const handleFilterSelect = (
   isFeed : boolean
 ) => {
 
-  console.log("filter",section);
   
   if (!feedPreference[section]?.includes(filter)) {
     const updatedPreference = {

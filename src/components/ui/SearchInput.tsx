@@ -35,7 +35,6 @@ const SearchInput = ({
       />
       <Button
         variant="filled"
-        onClick={() => console.log("Filled button clicked")}
         icon={<FiSearch />}
         type="submit"
         className="hidden md:flex"
