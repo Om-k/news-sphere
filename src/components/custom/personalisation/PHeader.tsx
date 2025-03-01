@@ -11,7 +11,7 @@ type PHeaderProps = {
   isFeed :boolean ;
 };
 
-const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeSection, dispatch, isFeed=true }) => {
+const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeSection, dispatch, isFeed }) => {
   return (
     <div className="flex justify-between flex-col lg:flex-row mb-5 lg:mb-0">
       <div className="flex space-x-4 mb-6">
@@ -36,9 +36,9 @@ const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeS
         icon={<BiTrash/>}
         onClick={() => {
           if(isFeed)
-           dispatch(resetFeedPreference({}));
+          { dispatch(resetFeedPreference({}));}
           else
-          dispatch(resetSearchPreference({}));
+         { dispatch(resetSearchPreference({}));}
         }}
       >
         Clear Filters

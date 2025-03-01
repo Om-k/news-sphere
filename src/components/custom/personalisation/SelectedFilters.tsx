@@ -3,19 +3,21 @@ import { Dispatch } from "react";
 import { CgClose } from "react-icons/cg";
 import Button from "../../ui/Button";
 import { IPreferenceFeed } from "../../../types/Filters";
-import { handleFilterRemove } from "../../../utils/helpers/persnalizationHelpers";
+import { handleFilterRemove, handleFilterRemoveSearch } from "../../../utils/helpers/persnalizationHelpers";
 import { FilterData } from "../../../containers/Personalize";
 
 type SelectedFiltersProps = {
-  activeSection:string ;
+  activeSection: string;
   feedPreference: IPreferenceFeed;
-  dispatch: Dispatch<any>; // Replace `any` with your Redux action type if available
+  dispatch: Dispatch<any>;
+  isFeed: boolean
 };
 
 const SelectedFilters: React.FC<SelectedFiltersProps> = ({
   activeSection,
   feedPreference,
   dispatch,
+  isFeed
 }) => {
   return (
     <div className="mb-4">
@@ -28,9 +30,15 @@ const SelectedFilters: React.FC<SelectedFiltersProps> = ({
           {filter}
           <CgClose
             className="ml-2 w-4 h-4 cursor-pointer"
-            onClick={() =>
-              handleFilterRemove(activeSection as keyof FilterData, filter, feedPreference, dispatch)
-            }
+            onClick={() => {
+              // if(isFeed)               {
+              handleFilterRemove(activeSection as keyof FilterData, filter, feedPreference, dispatch,isFeed)
+
+              // }
+              // else{
+              //   handleFilterRemoveSearch(activeSection as keyof FilterData, filter, feedPreference, dispatch)
+              // }
+            }}
           />
         </Button>
       ))}

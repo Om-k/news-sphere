@@ -1,6 +1,6 @@
 import { INewsItem } from "../../types/News";
 
-export const NewsCard = ({ author, thumbnail, title, url, date, source }: INewsItem) => {
+export const NewsCard = ({ thumbnail, title, url, date, source }: INewsItem) => {
 
   return (
     <div className="border border-secondary rounded-lg overflow-hidden">

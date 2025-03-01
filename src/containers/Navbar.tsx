@@ -14,7 +14,7 @@ const Navbar = () => {
   const paramValue = searchParams.get("q");
 
   const handleFilterToggle = () => {
-    navigate(`/filter?q=${paramValue}`)
+    navigate(`/filter?q=${paramValue && paramValue!=null ? paramValue : ""}`)
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

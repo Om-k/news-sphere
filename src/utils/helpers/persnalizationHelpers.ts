@@ -9,32 +9,59 @@ export const handleFilterSelect = (
   filter: string,
   feedPreference : IPreferenceFeed,
   dispatch: (arg0: any) => void,
-  
+  isFeed : boolean
 ) => {
+
+  console.log("filter",section);
+  
   if (!feedPreference[section]?.includes(filter)) {
     const updatedPreference = {
       ...feedPreference,
       [section]: [...(feedPreference[section] ?? []), filter],
       isApplied: true,
     };
-    dispatch(updateFeedPreference(updatedPreference));
+
+    if(isFeed)
+   { dispatch(updateFeedPreference(updatedPreference));}
+    else{
+      dispatch(updateSearchPreference(updatedPreference))
+    }
   }
 };
+
 
 export const handleFilterRemove = (
   section: keyof FilterData,
   filter: string,
   feedPreference : IPreferenceFeed,
   dispatch: (arg0: any) => void,
-  isFeed :boolean = true
+  isFeed:boolean
 ) => {
   const updatedPreference = {
     ...feedPreference,
     [section]: feedPreference[section]?.filter((item: string) => item !== filter) ?? [],
     isApplied: true,
   };
-  if(isFeed) dispatch(updateFeedPreference(updatedPreference)); 
-  else dispatch(updateSearchPreference(updatedPreference));
+  
+  if(isFeed)
+  {dispatch(updateFeedPreference(updatedPreference));}
+  else{
+    dispatch(updateSearchPreference(updatedPreference));
+  }
+};
+
+export const handleFilterRemoveSearch = (
+  section: keyof FilterData,
+  filter: string,
+  feedPreference : IPreferenceFeed,
+  dispatch: (arg0: any) => void
+) => {
+  const updatedPreference = {
+    ...feedPreference,
+    [section]: feedPreference[section]?.filter((item: string) => item !== filter) ?? [],
+    isApplied: true,
+  };
+   dispatch(updateSearchPreference(updatedPreference));
 };
 
 

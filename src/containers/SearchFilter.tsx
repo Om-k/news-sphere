@@ -65,7 +65,7 @@ const SearchFilter: React.FC = () => {
         <Button
           variant="iconed"
           icon={<BsArrowLeft />}
-          onClick={() => {navigator(`/search?q=${paramValue}`)}}
+          onClick={() => {navigator(`/search?q=${paramValue!=null ? paramValue : ""}`)}}
         ></Button>
         <h2>Filter</h2>
         <div></div>
@@ -85,6 +85,7 @@ const SearchFilter: React.FC = () => {
             activeSection={activeSection}
             feedPreference={{...searchPreference,authors:[]}}
             dispatch={dispatch}
+            isFeed={false}
           />
           <SearchInput
             placeholder={`Search ${activeSection}`}
@@ -103,7 +104,7 @@ const SearchFilter: React.FC = () => {
               <Button
                 variant="text"
                 key={index}
-                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, {...searchPreference,authors:[]}, dispatch)}
+                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, {...searchPreference,authors:[]}, dispatch,false)}
               >
                 {item}
               </Button>

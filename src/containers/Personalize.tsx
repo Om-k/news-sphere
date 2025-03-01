@@ -67,6 +67,7 @@ const Personalize: React.FC = () => {
             activeSection={activeSection}
             feedPreference={feedPreference}
             dispatch={dispatch}
+            isFeed={true}
           />
           <SearchInput
             placeholder={`Search ${activeSection}`}
@@ -85,7 +86,7 @@ const Personalize: React.FC = () => {
               <Button
                 variant="text"
                 key={index}
-                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, feedPreference, dispatch)}
+                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, feedPreference, dispatch,true)}
               >
                 {item}
               </Button>
