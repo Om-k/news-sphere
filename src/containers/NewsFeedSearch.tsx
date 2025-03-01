@@ -1,15 +1,17 @@
 import { useSelector } from "react-redux";
 import useGetNews from "../hooks/useGetNews";
-import { IPreferenceState } from "../types/States";
 import GridComponent from "../components/custom/GridComponent";
 import useQueryParam from "../hooks/useParamsSearch";
+import { RootState } from "../app/store";
 
 const NewsFeedSearch = () => {
 
-  const preferences = useSelector((state: IPreferenceState) => state.searchPreference);
+  const { searchPreference } = useSelector((state: RootState) => state.preference);
 
   const query = useQueryParam("q");
-  const { newsData, isLoading, error } = useGetNews(preferences, query ? query : "");
+  console.log("Feed pref serach",searchPreference);
+
+  const { newsData, isLoading, error } = useGetNews(searchPreference, query ? query : "");
 
 
   return (

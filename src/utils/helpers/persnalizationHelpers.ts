@@ -1,6 +1,6 @@
 import { FilterData } from "../../containers/Personalize";
 import { IPreferenceFeed } from "../../types/Filters";
-import { updateFeedPreference } from "../../app/features/preferenceSlice"; 
+import { updateFeedPreference, updateSearchPreference } from "../../app/features/preferenceSlice"; 
 import { ICategories } from "../../types/Categories";
   import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
@@ -25,14 +25,16 @@ export const handleFilterRemove = (
   section: keyof FilterData,
   filter: string,
   feedPreference : IPreferenceFeed,
-  dispatch: (arg0: any) => void
+  dispatch: (arg0: any) => void,
+  isFeed :boolean = true
 ) => {
   const updatedPreference = {
     ...feedPreference,
     [section]: feedPreference[section]?.filter((item: string) => item !== filter) ?? [],
     isApplied: true,
   };
-  dispatch(updateFeedPreference(updatedPreference));
+  if(isFeed) dispatch(updateFeedPreference(updatedPreference)); 
+  else dispatch(updateSearchPreference(updatedPreference));
 };
 
 

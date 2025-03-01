@@ -58,6 +58,7 @@ const Personalize: React.FC = () => {
         setActiveSection={setActiveSection}
         activeSection={activeSection}
         dispatch={dispatch}
+        isFeed={true}
       />
 
       {activeSection && (

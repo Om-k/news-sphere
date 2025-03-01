@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
 import SearchInput from "../components/ui/SearchInput";
 import { FiFilter } from "react-icons/fi";
@@ -9,9 +9,12 @@ import Button from "../components/ui/Button";
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const navigate = useNavigate();
+  
+  const [searchParams] = useSearchParams();
+  const paramValue = searchParams.get("q");
 
   const handleFilterToggle = () => {
-    navigate("/filter")
+    navigate(`/filter?q=${paramValue}`)
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +33,8 @@ const Navbar = () => {
       <div className="mx-6">
         <div className="flex justify-between my-4 items-center">
           <div className="hidden md:block" ></div>
-          <div className="flex items-center">
+          <div className="flex items-center" 
+          onClick={() => {navigate("/")}} >
             <img src={Logo} alt="logo" className="mr-5 h-11 w-11" />
             <h1>NewsSphere</h1>
           </div>

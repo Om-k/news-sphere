@@ -8,7 +8,9 @@ import { handleFilterSelect, handleSearchChange, resetPreferences } from "../uti
 import PHeader from "../components/custom/personalisation/Pheader";
 import SelectedFilters from "../components/custom/personalisation/SelectedFilters";
 import { BsArrowLeft } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import DateCompoent, { DateRange } from "../components/custom/personalisation/DateCompoent";
+import { updateSearchPreference } from "../app/features/preferenceSlice";
 
 export type FilterData = {
   category: string[] | undefined;
@@ -21,8 +23,13 @@ const SearchFilter: React.FC = () => {
   const dispatch = useDispatch();
   const { isLoading, isLoaded } = useGetFilters();
   const { filters } = useSelector((state: RootState) => state.filters);
-  const { feedPreference } = useSelector((state: RootState) => state.preference);
-  const categories = ["category", "source", "authors"]
+  const { searchPreference } = useSelector((state: RootState) => state.preference);
+  console.log("Search",searchPreference);
+  
+  const categories = ["category", "source"]
+
+  const [searchParams] = useSearchParams();
+  const paramValue = searchParams.get("q");
 
   const [activeSection, setActiveSection] = useState<string>("category");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -42,29 +49,41 @@ const SearchFilter: React.FC = () => {
     return <div className="text-center text-secondaryDarker">Loading filters...</div>;
   }
 
+  const handleDateApply = (dateRange: DateRange) => {
+    console.log("Date",dateRange);
+    dispatch(updateSearchPreference({...searchPreference,
+      date:{
+        from: dateRange.from,
+        to: dateRange.to
+      }
+    }))
+  };
+
   return (
     <section className="p-6 pt-0 bg-primary text-secondaryDarker rounded-lg shadow-md -mt-2">
       <div className="flex justify-between mb-4 items-center" >
         <Button
           variant="iconed"
           icon={<BsArrowLeft />}
-          onClick={() => {navigator("/")}}
+          onClick={() => {navigator(`/search?q=${paramValue}`)}}
         ></Button>
         <h2>Filter</h2>
         <div></div>
       </div>
+      <DateCompoent onApply={handleDateApply} />
       <PHeader
         categories={categories}
         setActiveSection={setActiveSection}
         activeSection={activeSection}
         dispatch={dispatch}
+        isFeed={false}
       />
 
       {activeSection && (
         <div className="bg-secondaryLight p-4 rounded-md border border-secondary mb-4">
           <SelectedFilters
             activeSection={activeSection}
-            feedPreference={feedPreference}
+            feedPreference={{...searchPreference,authors:[]}}
             dispatch={dispatch}
           />
           <SearchInput
@@ -84,7 +103,7 @@ const SearchFilter: React.FC = () => {
               <Button
                 variant="text"
                 key={index}
-                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, feedPreference, dispatch)}
+                onClick={() => handleFilterSelect(activeSection as keyof FilterData, item, {...searchPreference,authors:[]}, dispatch)}
               >
                 {item}
               </Button>

@@ -1,15 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
-import { resetFeedPreference } from "../../../app/features/preferenceSlice";
+import { resetFeedPreference, resetSearchPreference } from "../../../app/features/preferenceSlice";
 import Button from "../../ui/Button";
+import { BiTrash } from "react-icons/bi"; 
 
 type PHeaderProps = {
   categories: string[];
   setActiveSection: Dispatch<SetStateAction<string>>;
   activeSection: string;
   dispatch: Dispatch<any>;
+  isFeed :boolean ;
 };
 
-const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeSection, dispatch }) => {
+const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeSection, dispatch, isFeed=true }) => {
   return (
     <div className="flex justify-between flex-col lg:flex-row mb-5 lg:mb-0">
       <div className="flex space-x-4 mb-6">
@@ -30,9 +32,13 @@ const PHeader: React.FC<PHeaderProps> = ({ categories, setActiveSection, activeS
       </div>
 
       <Button
-        variant="text"
+        variant="filled"
+        icon={<BiTrash/>}
         onClick={() => {
-          dispatch(resetFeedPreference({}));
+          if(isFeed)
+           dispatch(resetFeedPreference({}));
+          else
+          dispatch(resetSearchPreference({}));
         }}
       >
         Clear Filters
