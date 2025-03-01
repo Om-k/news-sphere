@@ -5,7 +5,7 @@ import { RootState } from "../app/store";
 import SearchInput from "../components/ui/SearchInput";
 import Button from "../components/ui/Button";
 import { handleFilterSelect, handleSearchChange, resetPreferences } from "../utils/helpers/persnalizationHelpers";
-import PHeader from "../components/custom/personalisation/Pheader";
+import PersonalizationHeader from "../components/custom/personalisation/PersonalizationHeader";
 import SelectedFilters from "../components/custom/personalisation/SelectedFilters";
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ const Personalize: React.FC = () => {
         <h2>Personalize</h2>
         <div></div>
       </div>
-      <PHeader
+      <PersonalizationHeader
         categories={categories}
         setActiveSection={setActiveSection}
         activeSection={activeSection}
