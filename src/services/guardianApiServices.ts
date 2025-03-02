@@ -24,7 +24,7 @@ export const getGuardianData = async (
       thumbnail: item.fields?.thumbnail || placeholder,
       title: item.webTitle,
       source: "The Guardian",
-      date: convertDate(item.webPublicationDate), // Format to YYYY-MM-DD
+      date: convertDate(item.webPublicationDate),
       url: item.webUrl,
       author: item.fields?.byline || "Unknown",
     }));
@@ -32,7 +32,7 @@ export const getGuardianData = async (
     return transformedData;
   } catch (error) {
     console.error("Error fetching Guardian data: ", error);
-    throw new Error("Failed to fetch Guardian data.");
+    return [];
   }
 };
 

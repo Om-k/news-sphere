@@ -47,7 +47,8 @@ export const getNewsApiData = async (
     return transformedData;
   } catch (error) {
     console.error("Error fetching NewsAPI data: ", error);
-    throw new Error("Failed to fetch NewsAPI data.");
+    return []
+    // throw new Error("Failed to fetch NewsAPI data.");
   }
 };
 

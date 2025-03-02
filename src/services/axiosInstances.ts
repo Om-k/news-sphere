@@ -18,8 +18,8 @@ export const newYorkTimesAPI = axios.create({
 });
 
 export const newsAPI = axios.create({
-  baseURL: 'https://newsapi.org/v2',
-  headers: {
-    'Authorization': `Bearer ${import.meta.env.VITE_API_KEY_NEWS_API}`,
+  baseURL: '/newsApi',
+  params: {
+    'apiKey': import.meta.env.VITE_API_KEY_NEWS_API,
   },
 });
